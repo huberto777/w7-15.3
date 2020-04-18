@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "email": "michal@op.pl",
+      "password": "$2a$10$bHSWPI5ke02BStAUHXgi4ec88fs1S299qHL8iRACJGsP54pgczjqS",
+      "id": 1
+    },
+    {
+      "email": "bob@op.pl",
+      "password": "$2a$10$8UzZYd/gn2T.3vgFwZNdlOoG90m1/j1u55nTilAQTrbNp1gGhQPsK",
+      "id": 2
+    }
+  ],
+  "timeboxes": [
+    {
+      "id": 3,
+      "title": "Updated timebox",
+      "totalTimeInMinutes": 15
+    },
+    {
+      "id": 4,
+      "title": "Loguje sie",
+      "totalTimeInMinutes": 5
+    },
+    {
+      "title": "Wylogowuje sie",
+      "totalTimeInMinutes": 20,
+      "id": 8
+    }
+  ]
+}
