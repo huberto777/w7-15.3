@@ -4,7 +4,7 @@ import EditableTimebox from "./EditableTimebox";
 import TimeboxList from "./TimeboxList";
 import ErrorBoundary from "./ErrorBoundary";
 import LoginForm from "./LoginForm";
-import AuthenticationAPI from "../api/FetchAuthenticationApi";
+import AuthenticationAPI from "../api/FakeAuthenticationApi";
 import jwt from "jsonwebtoken";
 
 class App extends React.Component {
@@ -16,20 +16,13 @@ class App extends React.Component {
   getAccessToken() {
     this.setState({
       accessToken: localStorage.getItem("accessToken"),
-      expiresIn: localStorage.getItem("expiresIn"),
+      expiresIn: parseInt(localStorage.getItem("expiresIn") / 100000),
       previousLoginAttemptFailed: false,
     });
   }
 
   componentDidMount() {
     this.getAccessToken();
-    this.intID = setInterval(() => {
-      this.handleLogout();
-    }, this.state.expiresIn);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.intID);
   }
 
   isUserLoggedIn() {
@@ -45,7 +38,7 @@ class App extends React.Component {
     AuthenticationAPI.login(credentials)
       .then(({ accessToken }) => {
         localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("expiresIn", jwt.decode(accessToken).exp.toJson());
+        localStorage.setItem("expiresIn", jwt.decode(accessToken).exp);
         this.getAccessToken();
       })
       .catch(() => {
